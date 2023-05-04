@@ -27,11 +27,15 @@ def visualizacion():
     matrizInvitados= ordenamiento(4,matrizInvitados,1)   
     matrizUsuarios=[]   
     matrizAccesos=[]
-    for fila in range(len(matrizInvitados)):
+    for fila in range(5):
            matrizUsuarios.append(matrizInvitados[fila][0])
-           matrizAccesos.append(matrizInvitados[fila][4])
-    
-    return matrizAccesos[0:5],matrizUsuarios[0:5]
+           matrizAccesos.append(int(matrizInvitados[fila][4]))
+    mlp.bar(matrizUsuarios,matrizAccesos)
+    mlp.title("5 usuarios con menor acceso")
+    mlp.xlabel("DNI")
+    mlp.ylabel("Cantidad de veces")
+    mlp.show()
+
 
 
 
@@ -49,7 +53,8 @@ def EliminarInvitado():
         for fila in range(len(matrizInvitados)):
            if matrizInvitados[fila][0]==dni:
               matrizInvitados.pop(fila)
-              return matrizInvitados        #falta pasar a string y escribir en el archivo
+              return matrizInvitados
+            
       elif opcion=='2':
         mail=input("Ingrese el mail que quiere eliminar: ")
         mail=persona.check_sintaxis_mail(mail)
@@ -57,7 +62,7 @@ def EliminarInvitado():
            if matrizInvitados[fila][3]==mail:
               print(matrizInvitados[fila][3])
               matrizInvitados.pop(fila)     
-              return matrizInvitados      #falta pasar a string y escribir en el archivo
+              return matrizInvitados     
       else: 
         opcion=input("Ingrese 1 si quiere eliminar por dni, Ingrese 2 si quiere eliminar por mail: ") 
 

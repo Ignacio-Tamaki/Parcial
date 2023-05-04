@@ -8,7 +8,7 @@ from Funciones_parcial import *
 #menu una vez ingresado 
 def menu_clase(lista_persona,lista_empleado,lista_avion,lista_vuelo,lista_viaje,lista_reserva):
     while True:
-        print('1)Persona    2)Empleado    3)Avion    4)Vuelo    5)Viaje      6)Reserva    S)Salir')
+        print('1)Persona    2)Empleado    3)Avion    4)Vuelo    5)Viaje      6)Reserva  7)Eliminar invitado  S)Salir')
         
         eleccion_clase=input('Ingrese su eleccion: ')
 #persona
@@ -529,6 +529,10 @@ def menu_clase(lista_persona,lista_empleado,lista_avion,lista_vuelo,lista_viaje,
 
                 if eleccion_metodo=='B' or eleccion_metodo =="b":
                     menu_clase(lista_persona,lista_empleado,lista_avion,lista_vuelo,lista_viaje,lista_reserva)
+
+        if eleccion_clase=='7': #EJERCICIO 3.2 DEL PARCIAL
+            matrizInvitados=EliminarInvitado()
+            listanormal_a_txt(matrizInvitados)
 #salir
         if eleccion_clase=='S' or eleccion_clase =="s":
             menu()
