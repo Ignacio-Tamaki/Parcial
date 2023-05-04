@@ -1,6 +1,8 @@
 from Clases import *
+from ListaObjetos import *
 import matplotlib.pyplot as mlp
 import numpy as np
+from listasenlazadas import *
 def ordenamiento(columna, matriz, orden=0):
   if orden == 0:
     for i in range(len(matriz)-1):
@@ -33,8 +35,9 @@ def visualizacion():
 
 
 
-#Eliminar un usuario invitado por dni o email, 
-#el usuario debe decidir por cual de estas dos opciones hacerlo
+
+
+
 
 def EliminarInvitado():
     matrizInvitados=leer_parcial()
@@ -46,7 +49,7 @@ def EliminarInvitado():
         for fila in range(len(matrizInvitados)):
            if matrizInvitados[fila][0]==dni:
               matrizInvitados.pop(fila)
-              return matrizInvitados
+              return matrizInvitados        #falta pasar a string y escribir en el archivo
       elif opcion=='2':
         mail=input("Ingrese el mail que quiere eliminar: ")
         mail=persona.check_sintaxis_mail(mail)
@@ -54,14 +57,19 @@ def EliminarInvitado():
            if matrizInvitados[fila][3]==mail:
               print(matrizInvitados[fila][3])
               matrizInvitados.pop(fila)     
-              return matrizInvitados   
+              return matrizInvitados      #falta pasar a string y escribir en el archivo
       else: 
         opcion=input("Ingrese 1 si quiere eliminar por dni, Ingrese 2 si quiere eliminar por mail: ") 
 
 
+ #consigna 3)3   visualizar el nro de viaje que más reservas haya hecho. 
+def nro_viaje(lista_reserva):
+   lista=lista_reserva.le_matriz()
+   lista=ordenamiento(3,lista,1)
+   print (lista[0] )          #no pudimos acceder al valor del diccionario
+      
 
-matriz=EliminarInvitado()
-print(matriz)
+
 
 
 

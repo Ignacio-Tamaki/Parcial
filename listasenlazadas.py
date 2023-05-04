@@ -66,5 +66,12 @@ class Lista():
             nodo=nodo.prox
         
         return False
-
+    def le_matriz(self):
+        nodo=Nodo()
+        nodo=self.head
+        lista=[]
+        for i in range(self.len):
+            lista.append(str(nodo.dato.__dict__))
+            nodo=nodo.prox
+        return lista
     
