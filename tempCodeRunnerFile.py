@@ -1,6 +1,4 @@
-from Clases import *
-from Funciones_parcial import *
-def chequeo_existencia_DNI_mail():
+def actualizar_login():
     while True:
         listaComodin=[]
         matrizInvitados = leer_parcial()
@@ -29,9 +27,8 @@ def chequeo_existencia_DNI_mail():
             listaComodin[3]=persona.check_sintaxis_mail(listaComodin[3])
             listaComodin[3]=mail_repetido_login(listaComodin[3],matrizInvitados)
             matrizInvitados[fila]=[listaComodin[0],listaComodin[1],listaComodin[2],listaComodin[3]]
-            #Falta lo de pasarlo al txt
             print('actualizado')
+            return matrizInvitados
         #No permitido
         else: 
             print('No fue permitido actualizar. Ingrese nuevamente los datos')
-

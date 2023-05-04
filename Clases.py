@@ -35,27 +35,6 @@ def validarFecha():
             dia = validarNum("dia", 1, 28)
     return(datetime.date(año, mes, dia))
 
-#login recibe un usuario y una contraseña para chequear si está en el sistema. 
-def login_parcial(username, password, new_password=None):
-    with open("Usuarios.txt", 'r', encoding='utf-8') as archivo:
-        listaUsuarios=[]
-        passwordList=[]
-        for linea in archivo:
-            usu, contra = linea.strip().split(".")
-            listaUsuarios.append(usu)
-            passwordList.append(contra)
-        while username not in listaUsuarios:
-            username = input("El usuario ingresado no existe. Intente de nuevo: ")
-        index = listaUsuarios.index(username)
-        while passwordList[index] != password:
-            password = input("Error, contraseña incorrecta. Ingresela nuevamente: ")
-        if new_password is not None:
-            passwordList[index] = new_password
-            with open("Usuarios.txt", 'w', encoding='utf-8') as archivo:
-                for i in range(len(listaUsuarios)):
-                    archivo.write(f"{listaUsuarios[i]}.{passwordList[i]}\n")
-        return True
-
 
 def leer_parcial():
     with open("visitass.txt", 'r', encoding='utf-8') as archivo:

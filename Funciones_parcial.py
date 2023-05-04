@@ -39,3 +39,54 @@ def mail_repetido_login(mail,matrizInvitados):
             return mail
     return mail
 
+def actualizar_login():
+    while True:
+        listaComodin_1=[]
+        matrizInvitados = leer_parcial()
+        listaMenu = ['DNI', 'mail']
+        #inputs
+        for i in range(2):
+                user_input = str(input("Inroduzca {} : ".format(listaMenu[i])))
+                listaComodin_1.append(user_input)
+        listaComodin_1[0]=persona.check_DNI(listaComodin_1[0])
+        listaComodin_1[1]=persona.check_sintaxis_mail(listaComodin_1[1])
+        for i in range(len(matrizInvitados)):
+            if matrizInvitados[i][0] == listaComodin_1[0] and matrizInvitados[i][3] == listaComodin_1[1]:
+                fila = i
+                booleana = True
+        #Permitido
+        if booleana == True:
+            print('Permitido actualizar')
+            listaMenu = ['DNI', 'Nombre', 'apellido', 'mail']
+            listaComodin_2=[]
+            for i in range(4):
+                    user_input = str(input("Inroduzca {} : ".format(listaMenu[i])))
+                    listaComodin_2.append(user_input)
+            
+            listaComodin_2[0]=persona.check_DNI(listaComodin_2[0])
+            listaComodin_2[0]=DNI_repetido_login(listaComodin_2[0],matrizInvitados)
+            listaComodin_2[1]=persona.check_nombre(listaComodin_2[1],'nombre')
+            listaComodin_2[2]=persona.check_nombre(listaComodin_2[2],'apellido')
+            listaComodin_2[3]=persona.check_sintaxis_mail(listaComodin_2[3])
+            listaComodin_2[3]=mail_repetido_login(listaComodin_2[3],matrizInvitados)
+            listaComodin_2.append(matrizInvitados[fila][-1])
+            matrizInvitados[fila]=listaComodin_2
+            print(matrizInvitados[fila])
+            print('actualizado')
+            return matrizInvitados
+        #No permitido
+        else: 
+            print('No fue permitido actualizar. Ingrese nuevamente los datos')
+            
+def listanormal_a_txt(matrizInvitados):
+    matrizNueva = []
+    for fila in matrizInvitados:
+                cadena = ""
+                for elemento in fila:
+                    cadena += str(elemento) + " "
+                matrizNueva.append(cadena)
+
+    with open('visitass.txt', 'w') as archivo:
+        for elemento in matrizNueva:
+            archivo.write(str(elemento) + '\n')
+    

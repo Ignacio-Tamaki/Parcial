@@ -2,7 +2,7 @@ from listasenlazadas import *
 from Clases import *
 from ListaObjetos import *
 import matplotlib.pyplot as mlp
-
+from Funciones_parcial import *
 #----------------
 
 #menu una vez ingresado 
@@ -548,11 +548,8 @@ def menu():
         print("                         \    /  ||/   H   \||  \    /")
         print("                          '--'   OO   O|O   OO   '--'")
 
-
-
-
-        numero = input("\n Si se quiere registrar ingrese el número 1 \n si ya tiene una cuenta ingrese el número 2 \n  si quiere ingresar como invitado ingrese 3: ")
-        while numero != "1" and numero != "2" and numero != "3": numero = input("Ingrese una opción válida:   ")
+        numero = input("\n Si se quiere registrar ingrese el número 1 \n si ya tiene una cuenta ingrese el número 2 \n si quiere ingresar como invitado ingrese 3: \n si quiere actualizar sus datos de invitado ingrese 4: \n")
+        while numero not in ['1','2','3','4']: numero = input("Ingrese una opción válida:   ")
         if numero == "1":  
             us = input("Ingrese un usuario: ")
             if registrarse(us): print("Su usuario se creó con éxito")
@@ -576,7 +573,7 @@ def menu():
             fila = 0
             booleana = False
             for i in range(len(matrizInvitados)):
-                if matrizInvitados[i][0] == listaComodin[0]:
+                if matrizInvitados[i] == listaComodin:
                     fila = i
                     booleana = True
             if booleana == True:
@@ -584,27 +581,13 @@ def menu():
                 contador +=1
                 matrizInvitados[fila][4] = contador
             else:
-                matrizInvitados.append([listaComodin[0], listaComodin[1], listaComodin[2],listaComodin[3],1])
-        matrizNueva = []
-        for fila in matrizInvitados:
-            cadena = ""
-            for elemento in fila:
-                cadena += str(elemento) + " "
-            matrizNueva.append(cadena)
-
-        with open('visitass.txt', 'w') as archivo:
-            for elemento in matrizNueva:
-                archivo.write(str(elemento) + '\n')
-        menu_clase(lista_persona,lista_empleado,lista_avion,lista_vuelo,lista_viaje,lista_reserva)
-
-
-       
-        
-
-              
-
-
-
-
-
+                listaComodin[0]=DNI_repetido_login(listaComodin[0],matrizInvitados)
+                listaComodin[3]=mail_repetido_login(listaComodin[3],matrizInvitados)
+                matrizInvitados.append(listaComodin)
+            listanormal_a_txt(matrizInvitados)
+                    
+            menu_clase(lista_persona,lista_empleado,lista_avion,lista_vuelo,lista_viaje,lista_reserva)
+        if numero =='4':
+            matrizInvitados=actualizar_login()
+            listanormal_a_txt(matrizInvitados)
 menu()
