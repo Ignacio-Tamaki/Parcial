@@ -567,20 +567,31 @@ def menu():
                     user_input = str(input("Inroduzca {} : ".format(listaMenu[i])))
                     listaComodin.append(user_input)
             listaComodin[0]=persona.check_DNI(listaComodin[0])
-            listaComodin[1]=persona.check_nombre(listaComodin[1])
-            listaComodin[2]=persona.check_nombre(listaComodin[2])
+            listaComodin[1]=persona.check_nombre(listaComodin[1],"nombre")
+            listaComodin[2]=persona.check_nombre(listaComodin[2],"apellido")
             listaComodin[3]=persona.check_sintaxis_mail(listaComodin[3])
             fila = 0
             booleana = False
-            for i in matrizInvitados:
+            for i in range(len(matrizInvitados)):
                 if matrizInvitados[i][0] == listaComodin[0]:
                     fila = i
                     booleana = True
             if booleana == True:
-                matrizInvitados[fila][4] += 1
+                contador = int(matrizInvitados[fila][4])
+                contador +=1
+                matrizInvitados[fila][4] = contador
             else:
-                matrizInvitados.append([listaComodin[0], listaComodin[1], listaComodin[2],listaComodin[3]])
-            menu_clase(lista_persona,lista_empleado,lista_avion,lista_vuelo,lista_viaje,lista_reserva)
+                matrizInvitados.append([listaComodin[0], listaComodin[1], listaComodin[2],listaComodin[3],1])
+        matrizNueva = []
+        for fila in matrizInvitados:
+            cadena = ""
+            for elemento in fila:
+                cadena += str(elemento) + " "
+            matrizNueva.append(cadena)
 
-
+        with open('visitass.txt', 'w') as archivo:
+            for elemento in matrizNueva:
+                archivo.write(str(elemento) + '\n')
+        menu_clase(lista_persona,lista_empleado,lista_avion,lista_vuelo,lista_viaje,lista_reserva)
+            
 menu()

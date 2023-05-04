@@ -58,10 +58,10 @@ def login_parcial(username, password, new_password=None):
 
 
 def leer_parcial():
-    with open("visitas.txt", 'r', encoding='utf-8') as archivo:
+    with open("visitass.txt", 'r', encoding='utf-8') as archivo:
         matriz = []
         for linea in archivo:
-            dni,nom,apel,mail,cont = linea.strip().split(":")
+            dni,nom,apel,mail,cont = linea.strip().split(" ")
             matriz.append([dni,nom,apel,mail,cont])
         return (matriz)
 
