@@ -548,6 +548,9 @@ def menu():
         print("                         \    /  ||/   H   \||  \    /")
         print("                          '--'   OO   O|O   OO   '--'")
 
+
+
+
         numero = input("\n Si se quiere registrar ingrese el número 1 \n si ya tiene una cuenta ingrese el número 2 \n  si quiere ingresar como invitado ingrese 3: ")
         while numero != "1" and numero != "2" and numero != "3": numero = input("Ingrese una opción válida:   ")
         if numero == "1":  
@@ -593,5 +596,15 @@ def menu():
             for elemento in matrizNueva:
                 archivo.write(str(elemento) + '\n')
         menu_clase(lista_persona,lista_empleado,lista_avion,lista_vuelo,lista_viaje,lista_reserva)
-            
+
+
+       
+        
+
+              
+
+
+
+
+
 menu()
